@@ -20,14 +20,15 @@ public class WindowsGUI extends Application {
     private TextField tfFirstName = new TextField();
     private TextField tfLastName = new TextField();
     private PasswordField passwordField = new PasswordField();
+    private PasswordField confirmField = new PasswordField();
     private TextArea taResultField = new TextArea();
     private DatePicker dobPicker = new DatePicker();
     private Button btSubmit = new Button("Submit");
 
     @Override
     public void start(Stage primaryStage) {
-
-        Scene scene = new Scene(initUI(), 400, 400);
+        Locale.setDefault(Locale.US);
+        Scene scene = new Scene(initUI(), 450, 400);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Nick Pierre - Window's GUI");
         primaryStage.show();
@@ -49,7 +50,14 @@ public class WindowsGUI extends Application {
         gridPane.add(tfFirstName, 1, 0);
         gridPane.add(new Label("Last Name:" ), 0, 1);
         gridPane.add(tfLastName, 1, 1);
-        gridPane.add(btSubmit, 3, 5);
+        gridPane.add(new Label("DOB: "), 0, 3);
+        gridPane.add(dobPicker, 1, 3);
+        gridPane.add(new Label("Password: "), 0, 4);
+        gridPane.add(passwordField, 1, 4);
+        gridPane.add(new Label("Re-enter Password: "), 0, 5);
+        gridPane.add(confirmField, 1, 5);
+        gridPane.add(btSubmit, 3, 6);
+
         // HBox Contained within the GridPane for genders
         HBox genders = new HBox(10);
         RadioButton[] radioButtons = new RadioButton[3];
@@ -83,27 +91,23 @@ public class WindowsGUI extends Application {
         gridPane.add(new Label("Gender: "), 0, 2);
         gridPane.add(genders, 1, 2);
 
-
-        Locale.setDefault(Locale.US);
-        gridPane.add(new Label("DOB: "), 0, 3);
-        gridPane.add(dobPicker, 1, 3);
-
         HBox hBox = new HBox();
         hBox.getChildren().add(taResultField);
 
         btSubmit.setOnAction(event -> setTextArea());
-
         borderPane.setTop(gridPane);
         borderPane.setCenter(hBox);
-
         return borderPane;
     }
 
     private void setTextArea() {
         if (!checkPassword(passwordField.getText())) {
             taResultField.setText("INVALID PASSWORD FIELD");
-        } else {
+        } else if (!passwordField.getText().equals(confirmField.getText())) {
+            taResultField.setText("PASSWORDS DO NOT MATCH");
+        }else {
             User user = new User(gender, tfFirstName.getText(), tfLastName.getText(), dobPicker);
+            taResultField.setText(user.toString() + "\n\t****REGISTRATION COMPLETE****");
         }
     }
 

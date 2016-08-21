@@ -12,13 +12,15 @@ public class User {
     private String gender;
     private String firstName;
     private String lastName;
-    private DatePicker dp; // String in form of Month-Date-Year
+    private DatePicker datePicker; // String in form of Month-Date-Year
+    private LocalDate localDate;
 
     public User(String gender, String firstName, String lastName, DatePicker dp) {
         this.gender = gender;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.dp = dp;
+        this.datePicker = dp;
+        localDate = dp.getValue();
     }
 
 
@@ -27,7 +29,7 @@ public class User {
     }
 
     public void setDOB(DatePicker dp) {
-        this.dp = dp;
+        this.datePicker = dp;
     }
 
     public void setFirstName(String firstName) {
@@ -50,13 +52,12 @@ public class User {
         return lastName;
     }
 
-    public DatePicker getDOB() {
-        return dp;
+    public LocalDate getDOB() {
+        return localDate;
     }
 
     public int getAge() {
-        LocalDate date = getDOB().getValue();
-        return Calendar.YEAR - date.getYear();
+        return Calendar.getInstance().get(Calendar.YEAR) - localDate.getYear();
     }
 
     @Override
@@ -65,7 +66,7 @@ public class User {
                 "\nLast Name: " + getLastName() +
                 "\nGender: " + getGender() +
                 "\nDOB: " + getDOB() +
-                "\nAge: " + getAge();
+                "\nEstimated Age: " + getAge();
 
     }
 }
