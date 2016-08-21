@@ -28,7 +28,7 @@ public class WindowsGUI extends Application {
     @Override
     public void start(Stage primaryStage) {
         Locale.setDefault(Locale.US);
-        Scene scene = new Scene(initUI(), 450, 400);
+        Scene scene = new Scene(initUI(), 450, 420); // blaze-it lol
         primaryStage.setScene(scene);
         primaryStage.setTitle("Nick Pierre - Window's GUI");
         primaryStage.show();
@@ -92,7 +92,9 @@ public class WindowsGUI extends Application {
         gridPane.add(genders, 1, 2);
 
         HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
         hBox.getChildren().add(taResultField);
+        taResultField.setStyle(" -fx-font-size: 10px; -fx-font-weight: bold; -fx-text-alignment: center");
 
         btSubmit.setOnAction(event -> setTextArea());
         borderPane.setTop(gridPane);
@@ -107,7 +109,7 @@ public class WindowsGUI extends Application {
             taResultField.setText("PASSWORDS DO NOT MATCH");
         }else {
             User user = new User(gender, tfFirstName.getText(), tfLastName.getText(), dobPicker);
-            taResultField.setText(user.toString() + "\n\t****REGISTRATION COMPLETE****");
+            taResultField.setText(user.toString() + "\n\n****REGISTRATION COMPLETE****");
         }
     }
 
