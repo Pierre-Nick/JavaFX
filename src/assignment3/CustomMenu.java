@@ -11,6 +11,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -129,12 +131,11 @@ public class CustomMenu extends Application {
         pane.setTop(menuVBox);
         pane.setCenter(innerPane);
 
-
-        // TODO: This does not work properly
-        menuBarNavItems.get(0).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 0)));
-        menuBarNavItems.get(2).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 2)));
-        menuBarNavItems.get(3).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 3)));
-
+        innerPane.getChildren().clear();
+        menuBarNavItems.get(0).getItems().get(0).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 0)));
+        menuBarNavItems.get(0).getItems().get(1).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 1)));
+        menuBarNavItems.get(0).getItems().get(2).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 2)));
+        menuBarNavItems.get(0).getItems().get(3).setOnAction(event -> pane.setCenter(upDateInnerPane(innerPane, 3)));
 
         Scene scene = new Scene(pane, 400, 450);
         primaryStage.setResizable(false);
@@ -143,13 +144,20 @@ public class CustomMenu extends Application {
         primaryStage.show();
     }
 
-    // TODO: This method DEFINENTLY DOES not work properly
     private BorderPane upDateInnerPane(BorderPane innerPane, int index) {
-        NAME_LABEL.setText(pageContents[index].description);
-        DESCRIPTION.setText(pageContents[index].description);
-        innerPane.setTop(NAME_LABEL);
-        innerPane.setCenter(new ImageView(new Image("images/" + pageContents[index].algorithmName + ".gif")));
-        innerPane.setBottom(DESCRIPTION);
+        try {
+            GridPane topLevelIdentifier = new GridPane();
+            topLevelIdentifier.getChildren().addAll();
+            NAME_LABEL.setText(pageContents[index].algorithmName);
+            DESCRIPTION.setText(pageContents[index].description);
+            ALGO_GIF.setImage(new Image("images/" + pageContents[index].algorithmName + ".gif"));
+            innerPane.setTop(NAME_LABEL);
+            innerPane.setCenter(ALGO_GIF);
+            innerPane.setBottom(DESCRIPTION);
+        } catch (IllegalArgumentException ex) {
+            System.out.println("LOADED IMAGE NOT FOUND\n" + ex.toString());
+            ex.printStackTrace();
+        }
 
         return innerPane;
     }
