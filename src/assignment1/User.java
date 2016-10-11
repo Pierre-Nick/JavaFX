@@ -8,14 +8,14 @@ import java.util.Calendar;
 /**
  * Created by Nick Pierre on 8/21/2016.
  */
-public class User {
+class User {
     private String gender;
     private String firstName;
     private String lastName;
     private DatePicker datePicker; // String in form of Month-Date-Year
     private LocalDate localDate;
 
-    public User(String gender, String firstName, String lastName, DatePicker dp) {
+    User(String gender, String firstName, String lastName, DatePicker dp) {
         this.gender = gender;
         this.firstName = firstName;
         this.lastName = lastName;

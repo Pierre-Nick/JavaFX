@@ -34,7 +34,7 @@ public class WindowsGUI extends Application {
         primaryStage.show();
     }
 
-    public BorderPane initUI() {
+    private BorderPane initUI() {
         // Main Pane
         BorderPane borderPane = new BorderPane();
         //Some default stuff
