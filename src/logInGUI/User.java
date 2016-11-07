@@ -1,4 +1,4 @@
-package assignment1;
+package logInGUI;
 
 import javafx.scene.control.DatePicker;
 

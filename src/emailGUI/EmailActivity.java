@@ -1,4 +1,4 @@
-package Assignment5;
+package emailGUI;
 
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -104,12 +104,12 @@ public class EmailActivity extends Application {
         guiGridPane.add(emaillbl, 0, 2);
         guiGridPane.add(tfEmail, 1, 2);
 
-        HBox buttonHbox = new HBox();
-        buttonHbox.setAlignment(Pos.CENTER);
-        buttonHbox.setSpacing(20);
-        buttonHbox.getChildren().addAll(signInBtn, closeBtn);
+        HBox buttonHBox = new HBox();
+        buttonHBox.setAlignment(Pos.CENTER);
+        buttonHBox.setSpacing(20);
+        buttonHBox.getChildren().addAll(signInBtn, closeBtn);
 
-        return new VBox(15, guiGridPane, buttonHbox);
+        return new VBox(15, guiGridPane, buttonHBox);
     }
 
     /**

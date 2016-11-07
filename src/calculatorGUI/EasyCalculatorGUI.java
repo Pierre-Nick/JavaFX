@@ -1,4 +1,4 @@
-package Assignemnt2;
+package calculatorGUI;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;

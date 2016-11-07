@@ -1,4 +1,4 @@
-package assignment3;
+package menuGUI;
 
 import javafx.application.Application;
 

@@ -1,4 +1,4 @@
-package assignment1;
+package logInGUI;
 
 /**
  * Created by NickPierre on 9/4/16.
