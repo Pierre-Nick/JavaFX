@@ -44,7 +44,11 @@ public class OrderFormGUI extends Application {
 
         btnNext.setOnAction(event -> {
             try {
-                createCustomer();
+                if (customer == null) {
+                    createCustomer();
+                    System.out.println(customer.toString());
+                } else
+                    System.out.println("Customer already created");
             } catch (Exception e) {
                 e.printStackTrace();
             }
